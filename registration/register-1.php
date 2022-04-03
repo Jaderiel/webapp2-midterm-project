@@ -6,9 +6,9 @@ error_reporting(0);
 
 session_start();
 
-if (isset($_SESSION['username'])) {
-    header("Location: index.php");
-}
+// if (isset($_SESSION['username'])) {
+//     header("Location: index.php");
+// }
 
 if (isset($_POST['submit'])) {
 	$firstname = $_POST['firstname'];
@@ -23,8 +23,8 @@ if (isset($_POST['submit'])) {
 	// $region = $_POST['region'];
 	// $zip = $_POST['zip'];
 	$gender = $_POST['gender'];
-	$password = md5($_POST['password']);
-	$cpassword = md5($_POST['cpassword']);
+	$password = ($_POST['password']);
+	$cpassword = ($_POST['cpassword']);
 
 	if ($password == $cpassword) {
 		$sql = "SELECT * FROM users WHERE email='$email'";
@@ -92,7 +92,7 @@ if (isset($_POST['submit'])) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/registration.css">
+	<link rel="stylesheet" href="registration.css">
 	<title>Register</title>
 </head>
 <body>
@@ -104,28 +104,32 @@ if (isset($_POST['submit'])) {
                 <input type="text" placeholder="Lastname" name="lastname" value="<?php echo $lastname; ?>" required>
 			</div>
 			<div class="input-group-3">
-				<legend>Salutation:</legend>
-				<input type="radio" name="salutation" id="Mr" value="<?php echo $salutation; ?>">
-				<label for="Mr">Mr</label>
-				<input type="radio" name="salutation" id="Ms" value="<?php echo $salutation; ?>">
-				<label for="Ms">Ms</label>
-				<input type="radio" name="salutation" id="Ms" value="<?php echo $salutation; ?>">
-				<label for="Ms">Mrs</label>
-				<input type="radio" name="salutation" id="Ms" value="<?php echo $salutation; ?>">
-				<label for="Ms">Dr</label>
+            Salutation:<br>
+
+                <input type="radio" name="salutation" value="Mr">Mr.
+
+                <input type="radio" name="salutation" value="Ms">Ms.
+
+                <input type="radio" name="salutation" value="Mrs">Mrs.
+
+                <input type="radio" name="salutation" value="Dr">Dr.
+
+                <br>
 			</div>
 			<div class="input-group-3">
-				<legend>Suffix:</legend>
-				<input type="radio" name="suffix" id="Jr" value="<?php echo $suffix; ?>" >
-				<label for="Jr">Jr</label>
-				<input type="radio" name="suffix" id="Sr" value="<?php echo $suffix; ?>">
-				<label for="Sr">Sr</label>
-				<input type="radio" name="suffix" id="II" value="<?php echo $suffix; ?>">
-				<label for="II">II</label>
-				<input type="radio" name="suffix" id="III" value="<?php echo $suffix; ?>">
-				<label for="III">III</label>
-				<input type="radio" name="suffix" id="MD" value="<?php echo $suffix; ?>">
-				<label for="MD">MD</label>
+                Suffix:<br>
+
+                <input type="radio" name="suffix" value="Jr">Jr
+
+                <input type="radio" name="suffix" value="Sr">Sr
+
+                <input type="radio" name="suffix" value="II">II
+
+                <input type="radio" name="suffix" value="III">III
+
+                <input type="radio" name="suffix" value="MD">MD
+
+                <br>
 			</div>
 			<div class="input-group">
 				<input type="text" placeholder="Username" name="username" value="<?php echo $username; ?>" required>
@@ -148,11 +152,13 @@ if (isset($_POST['submit'])) {
 			<input type="date" placeholder="Entry date" name="entrydate" value="<?php echo $entrydate; ?>" required>
 			</div> -->
 			<div class="input-group-3">
-				<legend>Gender:</legend>
-				<input type="radio" name="gender" id="male" value="<?php echo $gender; ?>" >
-				<label for="male">Male</label>
-				<input type="radio" name="gender" id="female" value="<?php echo $gender; ?>">
-				<label for="female">Female</label>
+            Gender:<br>
+
+            <input type="radio" name="gender" value="Male">Male
+
+            <input type="radio" name="gender" value="Female">Female
+
+            <br>
 			</div>
 			<div class="input-group">
 				<input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
